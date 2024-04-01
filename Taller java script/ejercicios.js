@@ -131,7 +131,7 @@ function ejecutarOpcionOperadores(opcion) {
       rl.question('Ingresa la cantidad de euros: ', (euros) => {
         const dolares = euros * 1.07; 
         console.log(euros + ' euros son ' + dolares + ' dólares');
-        showMenu();
+        rl.close();
       });
       break;
     case '5':
@@ -141,7 +141,7 @@ function ejecutarOpcionOperadores(opcion) {
         const perimetro = lado * 4;
         console.log('El área del cuadrado es: ' + area);
         console.log('El perímetro del cuadrado es: ' + perimetro);
-        showMenu();
+        rl.close();
       });
       break;
     case '6':
@@ -152,7 +152,7 @@ function ejecutarOpcionOperadores(opcion) {
           const volumen = area * altura;
           console.log('El área del cilindro es: ' + area);
           console.log('El volumen del cilindro es: ' + volumen);
-          showMenu();
+          rl.close();
         });
       });
       break;
@@ -163,7 +163,7 @@ function ejecutarOpcionOperadores(opcion) {
         const area = Math.PI * Math.pow(radio, 2);
         console.log('La longitud de la circunferencia es: ' + longitud);
         console.log('El área del círculo es: ' + area);
-        showMenu();
+        rl.close();
       });
       break;
   case '8':
@@ -173,7 +173,7 @@ function ejecutarOpcionOperadores(opcion) {
           rl.question('Ingresa el tercer número: ', (num3) => {
             const promedio = (parseInt(num1) + parseInt(num2) + parseInt(num3)) / 3;
             console.log('El promedio de los números es: ' + promedio);
-            showMenu();
+            rl.close();
           });
         });
       });
@@ -184,95 +184,86 @@ default:
       }
     }
 
-
 //CONDICIONALES EJERCICIOS
 function ejecutarOpcionCondicionales(opcion) {
   switch (opcion) {
   case '1':
       console.log ("1. Saber si el número ingresado por teclado es positivo o negativo.");
-          function TipoSigno(num) {
-              if (num > 0) {
-                  return "Positivo";
-              } else if (num < 0) {
-                  return "Negativo";
-              } else {
-                  return "Neutro";
-              }
-          }
-          
-          let userInput = prompt("Ingresa un número:");
-          let numero = parseInt(userInput);
-          console.log(TipoSigno(numero));
-      
+      rl.question('Ingresa un número: ', (numero) => {
+        if (numero > 0) {
+          console.log('El número ingresado es positivo.');
+        } else if (numero < 0) {
+          console.log('El número ingresado es negativo.');
+        } else {
+          console.log('El número ingresado es cero.');
+        }
+        rl.close();
+      });
       break;
   case '2':
       console.log ("2. Escribir un algoritmo que reciba dos números por teclado y diga cuál es el mayor y cuál el menor");
-      let num1 = parseFloat(prompt("Ingrese el primer número:"));
-      let num2 = parseFloat(prompt("Ingrese el segundo número:"));
-
-      if (num1 > num2) {
-          // Salida si el primer número es mayor que el segundo
-          console.log("El primer número (" + num1 + ") es mayor que el segundo número (" + num2 + ").");
-          console.log("El segundo número (" + num2 + ") es menor que el primer número (" + num1 + ").");
-      } else if (num2 > num1) {
-          // Salida si el segundo número es mayor que el primero
-          console.log("El segundo número (" + num2 + ") es mayor que el primer número (" + num1 + ").");
-          console.log("El primer número (" + num1 + ") es menor que el segundo número (" + num2 + ")."); 
-      } else {
-          // Salida si ambos números son iguales
-          console.log("Ambos números son iguales.");
-      }
+      rl.question('Ingresa el primer número: ', (num1) => {
+        rl.question('Ingresa el segundo número: ', (num2) => {
+          if (num1 > num2) {
+            console.log('El primer número es mayor que el segundo.');
+          } else if (num1 < num2) {
+            console.log('El segundo número es mayor que el primero.');
+          } else {
+            console.log('Los números son iguales.');
+          }
+          rl.close();
+        });
+      });
       break; 
   case '3':
-      let num01 = parseInt(prompt("Ingrese el primer número entero positivo:"));
-      let num02 = parseInt(prompt("Ingrese el segundo número entero positivo:"));
-      let num3 = parseInt(prompt("Ingrese el tercer número entero positivo:"));
-      let menor, mayor;
-      if (num01 <= num02 && num01 <= num03) {
-          menor = num01;
-      } else if (num02 <= num01 && num02 <= num03) {
-          menor = num02;
-      } else {
-          menor = num03;
-      }
-
-      if (num01 >= num02 && num01 >= num03) {
-          mayor = num01;
-      } else if (num02 >= num01 && num02 >= num03) {
-          mayor = num02;
-      } else {
-          mayor = num3;
-      }
-      console.log("El menor número es: " + menor);
-      console.log("El mayor número es: " + mayor);
+    console.log ("3.Calcule e imprima el menor y el mayor de tres números enteros positivos.")
+    rl.question('Ingresa el primer número: ', (num1) => {
+        rl.question('Ingresa el segundo número: ', (num2) => {
+          rl.question('Ingresa el tercer número: ', (num3) => {
+            const mayor = Math.max(num1, num2, num3);
+            const menor = Math.min(num1, num2, num3);
+            console.log('El número mayor es: ' + mayor);
+            console.log('El número menor es: ' + menor);
+            rl.close();
+          });
+        });
+      });
           break; 
   case '4':
-      function sumaOresta(A, B) {
-      if (A < B) {
+    console.log ("4. Sumar dos números si A es menor que B, o restarlos en caso contrario.")
+    const sumaOresta = (A, B) => {
+        if (A < B) {
           return A + B;
-      } else {
+        } else {
           return A - B;
+        }
       }
-      }
-      console.log(sumaOresta(5, 3));
-      console.log(sumaOresta(3, 5));
-      console.log(sumaOresta(5, 5));
-  
+      rl.question("Introduce el valor de A: ", A => {
+        rl.question("Introduce el valor de B: ", B => {
+            if (parseInt(A) < parseInt(B)) {
+                console.log('La suma de los números es: ' + (parseInt(A) + parseInt(B)));
+              } else {
+                console.log('La resta de los números es: ' + (parseInt(A) - parseInt(B)));
+              }
+              rl.close();
+            });
+          });
       break;
   case '5':
-      var A = parseFloat(prompt("Ingrese el valor de A:"));
-      var B = parseFloat(prompt("Ingrese el valor de B:"));
-      function calcularCociente(A, B) {
-          if (B === 0) {
-              return "La división por cero no está definida.";
+    console.log ("5. Encontrar el cociente entre A y B, gestionando la división por cero.")
+      vrl.question('Ingresa el valor de A: ', (a) => {
+        rl.question('Ingresa el valor de B: ', (b) => {
+          if (b == 0) {
+            console.log('La división por cero no está definida.');
           } else {
-              return A / B;
+            console.log('El cociente entre A y B es: ' + (a / b));
           }
-      }
-      var resultado = calcularCociente(A, B);
-      console.log("El cociente de " + A + " y " + B + " es: " + resultado);
+          rl.close();
+        });
+      });
       break;
   case '6':
+    console.log ("6. Sumar dos números si al menos uno es negativo, o multiplicarlos en caso contrario.")
       var A = parseFloat(prompt("Ingrese el valor de A:"));
       var B = parseFloat(prompt("Ingrese el valor de B:"));
       function operacion(A, B) {
@@ -286,30 +277,14 @@ function ejecutarOpcionCondicionales(opcion) {
       console.log("El resultado de la operación es: " + resultado);
       break;
   case '7':
-      function esBisiesto(año) {
-          if ((año % 4 === 0 && año % 100 !== 0) || año % 400 === 0) {
-              return true;
-          } else {
-              return false;
-          }
-      }
-      
-      process.stdout.write("Ingrese el año: ");
-      
-      process.stdin.on('data', function(data) {
-          const input = data.toString().trim(); 
-          const año = parseInt(input);
-      
-          if (!isNaN(año) && año >= 0) {
-              if (esBisiesto(año)) {
-                  console.log(año + " es un año bisiesto.");
-              } else {
-                  console.log(año + " no es un año bisiesto.");
-              }
-              process.exit();
-          } else {
-              console.log("Por favor, ingresa un año válido.");
-          }
+    console.log ("7. Determinar si un año es bisiesto o no.")
+    rl.question('Ingresa un año: ', (age) => {
+        if ((age % 4 == 0 && age % 100 != 0) || ano % 400 == 0) {
+          console.log('El año ' + age + ' es bisiesto.');
+        } else {
+          console.log('El año ' + age + ' no es bisiesto.');
+        }
+        showMenu();
       });
 
       default:
