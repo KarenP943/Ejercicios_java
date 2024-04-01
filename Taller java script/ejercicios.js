@@ -1,5 +1,4 @@
 const readline = require('readline');
-
 const rl = readline.createInterface({
   input: process.stdin,
   output: process.stdout
@@ -105,79 +104,86 @@ function ejecutarOpcionOperadores(opcion) {
 
       break;
     case '2':
-      console.log("2. Suma de 2 numeros");
-      console.log("Ingrese el primer numero: ");
-      let numero1 = 9;
-      console.log("Ingrese el segundo numero");
-      let numero2 = 67;
-      let resultado2 = (numero1 + numero2);
-      console.log(resultado2);
+        console.log("2. Suma de 2 números");
+        rl.question("Ingrese el primer número: ", (numero1) => {
+          rl.question("Ingrese el segundo número: ", (numero2) => {
+            let resultado2 = (parseInt(numero1) + parseInt(numero2));
+            console.log("El resultado es: " + resultado2);
+            rl.close();
+          });
+        });
       break;
     case '3':
       console.log("3.visualizar numero elevado al cuadrado");
-      console.log("Ingrese el numero: ");
-      let numero = 12;
-      let resultado3 = (numero ** 2);
-      console.log(resultado3);
+      rl.question("Ingrese el numero: ", (num) => {
+        const numero = parseFloat(num);
+        if (isNaN(numero)) {
+          console.log("El valor ingresado no es un número válido.");
+        } else {
+          const resultado3 = (numero ** 2);
+          console.log("El resultado es: " + resultado3);
+        }
+        rl.close();
+      });
       break;
     case '4':
       console.log("4.Convertir euros a dolares");
-      console.log("Ingrese el valor de euros a convertir: ");
-      let valoreuro = 100;
-      let valordolar = 1.07747;
-      let resultado4 = (valoreuro * valordolar);
-      console.log(resultado4);
+      rl.question('Ingresa la cantidad de euros: ', (euros) => {
+        const dolares = euros * 1.07; 
+        console.log(euros + ' euros son ' + dolares + ' dólares');
+        showMenu();
+      });
       break;
     case '5':
       console.log("5.lado de un cuadrado, valor del área y del perímetro");
-      console.log("Ingrese el numero: ");
-      let num = 3;
-      let area = (num * num);
-      let perimetro = (num * 4);
-      console.log("El area del cuadrado es ", area);
-      console.log("El Perimetro del cuadrado es ", perimetro);
+      rl.question('Ingresa el lado del cuadrado: ', (lado) => {
+        const area = lado * lado;
+        const perimetro = lado * 4;
+        console.log('El área del cuadrado es: ' + area);
+        console.log('El perímetro del cuadrado es: ' + perimetro);
+        showMenu();
+      });
       break;
     case '6':
       console.log("6. Calcule el area y volumen un cilindro ");
-      console.log("Ingrese el radio del cilindro");
-      let radio = 8;
-      console.log("Ingrese la altura del cilindro");
-      let altura2 = 14;
-      console.log("Area del cilindro:");
-      let resultado5 = (2 * Math.PI * radio * radio + 2 * Math.PI * radio * altura2);
-      console.log("Volumen del cilindro:");
-      let resultado6 = (Math.PI * radio * radio * altura2);
-      console.log(resultado5);
-      console.log(resultado6);
+      crl.question('Ingresa el radio del cilindro: ', (radio) => {
+        rl.question('Ingresa la altura del cilindro: ', (altura) => {
+          const area = Math.PI * radio * radio;
+          const volumen = area * altura;
+          console.log('El área del cilindro es: ' + area);
+          console.log('El volumen del cilindro es: ' + volumen);
+          showMenu();
+        });
+      });
       break;
   case '7':
       console.log("7.Calcule la longitud de la circunferencia ");
-      console.log("Ingrese el radio: ");
-      let radio2 = 13;
-      console.log("La longitud de la circunferencia ");
-      let resultado7 = (2 * Math.PI * radio2);
-      console.log("El área (pi*r)^2 del círculo inscrito circunferencia ");
-      let resultado8 = (Math.PI * radio2) ** 2;
-      console.log("El radio es ", radio2);
-      console.log("La longitud de la circunferencia ", resultado7);
-      console.log("El area del circulo es ", resultado8);
+      rl.question('Ingresa el radio de la circunferencia: ', (radio) => {
+        const longitud = 2 * Math.PI * radio;
+        const area = Math.PI * Math.pow(radio, 2);
+        console.log('La longitud de la circunferencia es: ' + longitud);
+        console.log('El área del círculo es: ' + area);
+        showMenu();
+      });
       break;
   case '8':
       console.log("8.Calcular el promedio de tres (3) números ingresados por teclado.")
-      console.log("Ingrese el primer numero");
-      let num1 = 13;
-      console.log("Ingrese el segundo numero"); 
-      let num2 = 14;
-      console.log("Ingrese el tercer numero");
-      let num3 = 78;
-      let resultado9 = (num1+num2+num3) / 3;
-      console.log("El promedio de los numeros es",resultado9);
+      rl.question('Ingresa el primer número: ', (num1) => {
+        rl.question('Ingresa el segundo número: ', (num2) => {
+          rl.question('Ingresa el tercer número: ', (num3) => {
+            const promedio = (parseInt(num1) + parseInt(num2) + parseInt(num3)) / 3;
+            console.log('El promedio de los números es: ' + promedio);
+            showMenu();
+          });
+        });
+      });
       break; 
 default:
   console.log('Opción no válida.');
       break;
       }
     }
+
 
 //CONDICIONALES EJERCICIOS
 function ejecutarOpcionCondicionales(opcion) {
